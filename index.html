@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smith</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1451062930315216');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1451062930315216&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background:
+                radial-gradient(ellipse 55% 40% at 15% 20%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 35% at 90% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 55%),
+                #f4f5f8;
+            color: #1f2937;
+            padding: 40px 16px;
+            overflow-x: hidden;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            width: 100%;
+            padding: 32px 24px 26px;
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(165deg, #f3e8ff 0%, #ede9fe 28%, #e0e7ff 58%, #dbeafe 100%);
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            box-shadow:
+                0 20px 50px rgba(99, 102, 241, 0.16),
+                0 2px 8px rgba(15, 23, 42, 0.05);
+            text-align: center;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #a855f7, #6366f1, #3b82f6);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -25%;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .profile-wrap {
+            position: relative;
+            width: 118px;
+            height: 118px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .profile-spinner {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: conic-gradient(#a855f7, #6366f1, #3b82f6, #a855f7);
+            animation: spinBorder 2.4s linear infinite;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
+        }
+
+        .profile-spinner::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            background: #ede9fe;
+        }
+
+        .profile-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid rgba(168, 85, 247, 0.35);
+            animation: profilePulse 2.2s ease-out infinite;
+            pointer-events: none;
+        }
+
+        .profile {
+            width: 102px;
+            height: 102px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 3px solid #fff;
+        }
+
+        @keyframes spinBorder {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes profilePulse {
+            0% { transform: scale(0.94); opacity: 0.8; }
+            100% { transform: scale(1.16); opacity: 0; }
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            margin-bottom: 8px;
+            color: #1e293b;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 .accent {
+            background: linear-gradient(90deg, #7c3aed, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            color: #7c3aed;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.55;
+            color: #475569;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-top {
+            margin-bottom: 20px;
+        }
+
+        .tagline strong {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(167, 139, 250, 0.28);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-row:nth-child(1) {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.85), rgba(243, 232, 255, 0.9));
+        }
+
+        .feature-row:nth-child(2) {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.85), rgba(238, 242, 255, 0.95));
+        }
+
+        .feature-row:nth-child(3) {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.85), rgba(219, 234, 254, 0.95));
+        }
+
+        .feature-row:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(99, 102, 241, 0.12);
+        }
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+
+        .feature-row:nth-child(1) .feature-icon {
+            background: rgba(168, 85, 247, 0.16);
+            color: #7c3aed;
+        }
+
+        .feature-row:nth-child(2) .feature-icon {
+            background: rgba(99, 102, 241, 0.16);
+            color: #4f46e5;
+        }
+
+        .feature-row:nth-child(3) .feature-icon {
+            background: rgba(59, 130, 246, 0.16);
+            color: #2563eb;
+        }
+
+        .feature-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .feature-text strong {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 2px;
+        }
+
+        .feature-text span {
+            display: block;
+            font-size: 11px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .feature-chevron {
+            color: #a78bfa;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px 18px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: linear-gradient(90deg, #3b82f6 0%, #7c3aed 100%);
+            border: none;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 28px rgba(99, 102, 241, 0.4);
+            animation: jump 1.35s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .btn .tg-icon,
+        .btn .arrow {
+            font-size: 16px;
+        }
+
+        @keyframes jump {
+            0%, 55%, 100% { transform: translateY(0); }
+            20% { transform: translateY(-12px); }
+            35% { transform: translateY(0); }
+            45% { transform: translateY(-6px); }
+        }
+
+        .timer {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 16px;
+            color: #64748b;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timer span {
+            color: #7c3aed;
+            font-weight: 800;
+        }
+
+        .card-foot {
+            margin-top: 14px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: #8b5cf6;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 420px) {
+            .card {
+                padding: 28px 18px 22px;
+                border-radius: 24px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .btn {
+                font-size: 13px;
+                padding: 14px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="card">
+
+            <div class="profile-wrap">
+                <span class="profile-ring"></span>
+                <span class="profile-spinner"></span>
+                <img src="isha.jpg" class="profile" alt="SMITH [ THE FIXER KING ]">
+            </div>
+
+            <h1>SMITH<span class="accent"> [THE FIXER KING]</span></h1>
+            <div class="subtitle">Trusted Tips · On-Time Signals · Steady Wins</div>
+            <p class="tagline">
+                Follow Smith for <strong>filtered tips</strong> that cut the noise —
+                short, timely, and easy to act on.
+            </p>
+
+            <div class="feature-list">
+                <div class="feature-row">
+                    <div class="feature-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <div class="feature-text">
+                        <strong>Handpicked Tips</strong>
+                        <span>Only selected calls — no spam, no random posts.</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right feature-chevron"></i>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="feature-text">
+                        <strong>On-Time Entries</strong>
+                        <span>Updates land before the moment slips away.</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right feature-chevron"></i>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="feature-text">
+                        <strong>Verified Channel</strong>
+                        <span>Original Smith — join the official link only.</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right feature-chevron"></i>
+                </div>
+            </div>
+
+            <a class="btn" id="tg-btn" href="https://t.me/+Kf5HfOQuultlNmFl" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-telegram-plane tg-icon"></i>
+                <span>Join Free Telegram</span>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+            </a>
+
+            <div class="timer">
+                FREE JOINING ENDS IN <span id="count">30</span>s
+            </div>
+
+            <div class="card-foot">Filter Noise · Follow Tips</div>
+        </div>
+    </div>
+
+
+</html>
